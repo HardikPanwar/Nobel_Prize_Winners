@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import React, {useEffect, useRef} from 'react';
 import './App.css';
+import Header from './components/Header';
+import Winners from './components/Winners';
+import Backdrop from '@material-ui/core/Backdrop';
+import { makeStyles } from '@material-ui/core/styles';
+import { Paper } from '@material-ui/core';
+import prizeVideo from './assets/video/noble_prize.mp4';
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
 
 function App() {
+  const videoRef = useRef();
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+  const setPlayBack = () => {
+    videoRef.current.playbackRate = 2.5;
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 2600);
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Backdrop className={classes.backdrop} open={open}>
+          <Paper style={{padding:'50px'}} elevation={12}>
+            <video muted autoPlay ref={videoRef} onCanPlay={() => setPlayBack()}>
+                <source src= { prizeVideo } type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+          </Paper>
+      </Backdrop>
+      <Header/>
+      <Winners/>
     </div>
   );
 }
