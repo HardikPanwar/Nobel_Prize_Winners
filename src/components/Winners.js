@@ -598,7 +598,7 @@ function Winners() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://api.nobelprize.org/v1/prize.json').then(res =>{
+      const response = await axios.get('https://api.nobelprize.org/v1/prize.json').then(res =>{
         console.log(res)
         setData(res.data.prizes);
         setFilteredPrizes(res.data.prizes);
