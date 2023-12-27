@@ -9,7 +9,10 @@ function Header() {
           <Toolbar>
             <img src={logo} width={50} height={50} style={{marginRight:'20px'}} />
             <Typography sx={{ letterSpacing: 2 ,color:"white"}} variant="h6">
-              Noble Winners
+              Nobel Winners
+            </Typography>
+            <Typography sx={{ letterSpacing: 2 ,color:"white", opacity:0.8, marginLeft:'auto',fontFamily:"monospace"}} variant="h6">
+              @HardikPanwar
             </Typography>
           </Toolbar>
         </AppBar>

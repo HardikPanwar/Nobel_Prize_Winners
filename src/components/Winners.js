@@ -593,13 +593,11 @@ function Winners() {
     });
     const newData = arr.filter((data) => (data.win > 1 && data.year > 1900 && data.year <= 2018));
     setMultiWinners(newData);
-    console.log('winners', multiwinners);
   }; 
 
   const fetchData = async () => {
     try {
       const response = await axios.get('https://api.nobelprize.org/v1/prize.json').then(res =>{
-        console.log(res)
         setData(res.data.prizes);
         setFilteredPrizes(res.data.prizes);
       });
@@ -627,8 +625,6 @@ function Winners() {
     filterMultiWinners();
   }, [selectedYear, selectedCategory, data]);
   const extra = multiwinners.length - 4;
-  console.log(multiwinners.length);
-  console.log(extra);
   multiwinners.splice(3,extra);
   return (
     <div>
@@ -657,7 +653,7 @@ function Winners() {
 
         <BootstrapDialog onClose={handleClose} sx={{width:"560px",margin:"auto"}} aria-labelledby="customized-dialog-title" open={open}>
           <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            <span style={{ fontWeight: 700, color: '#662549' }}>People who won Noble Prize Multiple times</span>
+            <span style={{ fontWeight: 700, color: '#662549' }}>People who won Nobel Prize Multiple times</span>
           </DialogTitle>
           <IconButton
             aria-label="close"
@@ -706,7 +702,7 @@ function Winners() {
           </Box>
 
           <Box sx={{ margin: '20px' }}>
-            <TextField sx={{ width: '200px' }} onChange={(e) => setSelectedYear(e.target.value)} id="outlined-select-currency" select label="Year" defaultValue="1900-2023" helperText="Please select your Year">
+            <TextField sx={{ width: '200px' }} onChange={(e) => setSelectedYear(e.target.value)} id="outlined-select-currency" select label="Year" defaultValue="" helperText="Please select your Year">
               {yearOptions.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
